@@ -1,0 +1,169 @@
+
+CREATE TABLE [dbo].[PersonSet] (
+    [Id]         ,
+    [FirstName]  ,
+    [MiddleName] ,
+    [LastName]   ,
+    [Type]   ,
+    [DealShare] ,
+    [Phone] ,
+    [Email] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+);
+
+CREATE TABLE [dbo].[AgentsSet] (
+    [Id]         ,
+    [FirstName]  ,
+    [MiddleName] ,
+    [LastName]   ,
+    [DealShare]  ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+);
+
+CREATE TABLE [dbo].[ClientsSet] (
+    [Id]         ,
+    [FirstName]  ,
+    [MiddleName] ,
+    [LastName]   ,
+    [Phone] ,
+    [Email] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+);
+
+CREATE TABLE [dbo].[PersonSet] (
+    [Id]        ,
+    [FirstName]  ,
+    [MiddleName] ,
+    [LastName]   ,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[PersonSet_Agent] (
+    [DealShare]   ,
+    [Id]         ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Agent_inherits_Person] FOREIGN KEY ([Id]) REFERENCES [dbo].[PersonSet] ([Id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[PersonSet_Client] (
+    [Phone] ,
+    [Email] ,
+    [Id]    ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Client_inherits_Person] FOREIGN KEY ([Id]) REFERENCES [dbo].[PersonSet] ([Id]) ON DELETE CASCADE
+);
+
+
+CREATE TABLE [dbo].[RealEstateSet] (
+    [Id] INT IDENTITY (1, 1) NOT NULL,
+    [Address_City]         ,
+    [Address_Street]       ,
+    [Address_House]        ,
+    [Address_Number]       ,
+    [Coordinate_latitude]  ,
+    [Coordinate_longitude] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[RealEstateSet_Apartment] (
+    [TotalArea] ,
+    [Rooms] ,
+    [Floor] ,
+    [Id] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Apartment_inherits_RealEstate] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateSet] ([Id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[RealEstateSet_House] (
+    [TotalFloors],
+    [TotalArea] ,
+    [Id]    ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_House_inherits_RealEstate] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateSet] ([Id]) ON DELETE CASCADE
+);
+
+
+CREATE TABLE [dbo].[RealEstateSet_Land] (
+    [TotalArea] ,
+    [Id] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Land_inherits_RealEstate] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateSet] ([Id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[DemandSet] ([Id] INT IDENTITY (1, 1) NOT NULL,
+    [Address_City]        ,
+    [Address_Street]      ,
+    [Address_House]       ,
+    [Address_Number]      ,
+    [MinPrice]       ,
+    [MaxPrice]     ,
+    [AgentId]      ,
+    [ClientId]     ,
+    [RealEstateFilter_Id],
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [DemandAgent] FOREIGN KEY ([AgentId]) REFERENCES [dbo].[PersonSet_Agent] ([Id]),
+    CONSTRAINT [DemandClient] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[PersonSet_Client] ([Id]),
+    CONSTRAINT [DemandRealEstateFilter] FOREIGN KEY ([RealEstateFilter_Id]) REFERENCES [dbo].[RealEstateFilterSet] ([Id])
+);
+
+CREATE TABLE [dbo].[RealEstateFilterSet] (
+    [Id] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[RealEstateFilterSet_ApartmentFilter] (
+    [MinArea]  ,
+    [MaxArea]  ,
+    [MinRooms] ,
+    [MaxRooms] ,
+    [MinFloor] ,
+    [MaxFloor] ,
+    [Id]       ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ApartmentFilter_inherits_RealEstateFilter] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateFilterSet] ([Id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[RealEstateFilterSet_HouseFilter] (
+    [MinFloors]    ,
+    [MaxFloors]    ,
+    [MinArea]  ,
+    [MaxArea]   ,
+    [MinRooms]     ,
+    [MaxRooms]     ,
+    [Id]    ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_HouseFilter_inherits_RealEstateFilter] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateFilterSet] ([Id]) ON DELETE CASCADE
+);
+
+
+CREATE TABLE [dbo].[RealEstateFilterSet_LandFilter] (
+    [MinArea] ,
+    [MaxArea] ,
+    [Id]    , 
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_LandFilter_inherits_RealEstateFilter] FOREIGN KEY ([Id]) REFERENCES [dbo].[RealEstateFilterSet] ([Id]) ON DELETE CASCADE
+);
+
+
+CREATE TABLE [dbo].[SupplySet] (
+    [Id]            ,
+    [Price]        ,
+    [AgentId]    ,
+    [ClientId]    ,
+    [RealEstateId] ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [SupplyAgent] FOREIGN KEY ([AgentId]) REFERENCES [dbo].[PersonSet_Agent] ([Id]),
+    CONSTRAINT [SupplyClient] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[PersonSet_Client] ([Id]),
+    CONSTRAINT [SupplyRealEstate] FOREIGN KEY ([RealEstateId]) REFERENCES [dbo].[RealEstateSet] ([Id])
+);
+
+
+CREATE TABLE [dbo].[DealSet] (
+    [Id]        ,
+    [Demand_Id]  ,
+    [Supply_Id]  ,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [DealDemand] FOREIGN KEY ([Demand_Id]) REFERENCES [dbo].[DemandSet] ([Id]),
+    CONSTRAINT [DealSupply] FOREIGN KEY ([Supply_Id]) REFERENCES [dbo].[SupplySet] ([Id])
+);
+

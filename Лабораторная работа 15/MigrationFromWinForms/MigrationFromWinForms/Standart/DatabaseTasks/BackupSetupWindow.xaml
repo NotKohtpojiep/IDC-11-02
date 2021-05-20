@@ -1,0 +1,24 @@
+﻿<Window x:Class="MigrationFromWinForms.Standart.DatabaseTasks.BackupSetupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MigrationFromWinForms.Standart.DatabaseTasks"
+        mc:Ignorable="d"
+        Title="BackupSetupWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btPathFull" Content="..." HorizontalAlignment="Left" Margin="682,60,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btPathDiff" Content="..." HorizontalAlignment="Left" Margin="682,98,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btPathTran" Content="..." HorizontalAlignment="Left" Margin="682,145,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btPathMaster" Content="..." HorizontalAlignment="Left" Margin="682,184,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btPathMSDB" Content="..." HorizontalAlignment="Left" Margin="682,247,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btAdd" Content="Настроить" HorizontalAlignment="Left" Margin="574,387,0,0" VerticalAlignment="Top" Height="25" Width="89"/>
+        <Button x:Name="btClose" Content="Закрыть" HorizontalAlignment="Left" Margin="697,387,0,0" VerticalAlignment="Top" Height="25" Width="70"/>
+        <TextBox x:Name="tbFull" HorizontalAlignment="Left" Margin="68,60,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="342"/>
+        <TextBox x:Name="tbDiff" HorizontalAlignment="Left" Margin="68,98,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="342"/>
+        <TextBox x:Name="tbTran" HorizontalAlignment="Left" Margin="68,137,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="342"/>
+        <TextBox x:Name="tbMaster" HorizontalAlignment="Left" Margin="68,184,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="342"/>
+        <TextBox x:Name="tbMSDB" HorizontalAlignment="Left" Margin="68,239,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="342"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,1 @@
+https://docs.microsoft.com/ru-ru/sql/relational-databases/replication/tutorial-preparing-the-server-for-replication?view=sql-server-ver15

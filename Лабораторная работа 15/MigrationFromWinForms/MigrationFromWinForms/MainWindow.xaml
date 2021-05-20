@@ -1,0 +1,13 @@
+﻿<Window x:Class="MigrationFromWinForms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MigrationFromWinForms"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="215" Width="554">
+    <Grid>
+        <Button Content="MS SQL Express" Click="btExpress_Click" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center" Height="55" Width="141"/>
+        <Button Content="MS SQL Standart" Click="btStandart_Click" HorizontalAlignment="Left" Margin="277,0,0,0" VerticalAlignment="Center" Height="55" Width="150"/>
+    </Grid>
+</Window>
