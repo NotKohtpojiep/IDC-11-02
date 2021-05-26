@@ -1,0 +1,21 @@
+﻿<Page x:Class="SqlAdminUtility.pages.manageConnectionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SqlAdminUtility.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="manageConnectionsPage">
+
+    <Grid>
+        <ComboBox x:Name="instancesList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Margin="10,10,0,0" Height="40" SelectionChanged="instancesList_SelectionChanged"/>
+        <TextBox x:Name="ConnectionStringBox" HorizontalAlignment="Left" Height="40" Margin="525,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Style="{StaticResource ResourceKey=Placeholder_ConnString}"/>
+        <CheckBox x:Name="trustedConnection" IsChecked="True" Content="Trusted Connection" HorizontalAlignment="Left" Margin="525,55,0,0" VerticalAlignment="Top" Height="20" Width="235" Click="trustedConnection_Click"/>
+        <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top" Width="235" Height="45" Click="connect_Click"/>
+        <ComboBox SelectionChanged="databasesList_SelectionChanged" x:Name="databasesList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Margin="270,10,0,0" Height="40" />
+        <TextBox Visibility="Hidden" x:Name="loginBox" HorizontalAlignment="Left" Height="40" Margin="525,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265" Style="{StaticResource ResourceKey =Placeholder_login}"/>
+        <TextBox Visibility="Hidden" x:Name="passwordBox" HorizontalAlignment="Left" Height="40" Margin="525,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265" Style="{StaticResource ResourceKey=Placeholder_password}"/>
+        <CheckBox Click="localCheckBox_Click" x:Name="localCheckBox" Content="Local connection" HorizontalAlignment="Left" Margin="525,80,0,0" VerticalAlignment="Top" Height="20" Width="235"/>
+    </Grid>
+</Page>

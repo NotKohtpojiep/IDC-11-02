@@ -1,0 +1,60 @@
+﻿<Window x:Class="SqlAdminUtility.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SqlAdminUtility"
+        mc:Ignorable="d"
+        Title="Database Admin Tool Menu" Height="450" Width="800">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="195*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Settings">
+                <MenuItem Header="Connection" x:Name="ManageConnections" Click="ManageConnections_Click">
+
+                </MenuItem>
+
+            </MenuItem>
+            <MenuItem Header="Tasks">
+                <MenuItem Header="Backup" x:Name="CreateBackup" Click="CreateBackup_Click">
+                    <MenuItem Header="Full database backup" x:Name="FullBackup" Click="FullBackup_Click">
+
+                    </MenuItem>
+                    <MenuItem Header="Differential database backup" x:Name="DifferentialBackup" Click="FullBackup_Click">
+
+                    </MenuItem>
+                    <MenuItem Header="Mail settings" x:Name="mailSettings" Click="mailSettings_Click">
+
+                    </MenuItem>
+
+
+
+                    <MenuItem Header="Backup history" x:Name="history" Click="history_Click">
+
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Users" x:Name="Users" Click="Users_Click">
+                    <MenuItem Header="Add user to database" x:Name="AddDatabaseUser" Click="AddDatabaseUser_Click">
+
+                    </MenuItem>
+                    <MenuItem Header="Add user to server" x:Name="AddServerUser" Click="AddServerUser_Click">
+
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Database mail">
+                <MenuItem Header="Create SMTP account" x:Name="createSMTPaccount" Click="createSMTPaccount_Click"/>
+                <MenuItem Header="Add mail profile" x:Name="AddMailProfile" Click="AddMailProfile_Click"/>
+                <MenuItem Header="Send mail" x:Name="SendMail" Click="SendMail_Click"/>
+            </MenuItem>
+            <MenuItem Header="About">
+
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>
